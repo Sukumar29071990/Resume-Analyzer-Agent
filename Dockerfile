@@ -1,9 +1,11 @@
-FROM python:3.12-slim
-
-WORKDIR /app
+From python:3.9-slim
 
 COPY . /app
 
-RUN pip install -r requirements.txt
+WORKDIR /app
 
-CMD uvicorn employee:app --reload
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "ui.py", "--server.port=8501", "--server.address=0.0.0.0"]
